@@ -5,6 +5,7 @@ const command = {
   "ADD" : ins.add,
   "COPY" : ins.copy,
   "ENV" : ins.env,
+  "ARG" : ins.arg,
   "EXPOSE" : ins.expose,
   "LABEL" : ins.label,
   "USER" : ins.user,
@@ -16,21 +17,22 @@ const command = {
 var instr_exports = [
   "from",       "maintainer", "run",          "cmd",
   "entryPoint", "label",      "expose",       "env",
-  "add",        "copy",       "user",         "workdir",
-  "stopSignal", "volume",     "healthCheck",  "shell",
-  "comment"
+  "arg",        "add",        "copy",         "user",
+  "workdir",    "stopSignal", "volume",       "healthCheck",
+  "shell",      "comment",
 ]
 
 var onBuild_methods = [
   "ADD",  "COPY",  "ENV",  "EXPOSE", 
   "LABEL",  "USER",  "WORKDIR",  "VOLUME", 
-  "STOPSIGNAL"
+  "STOPSIGNAL", "ARG",
 ]
 
 var valid_inputs = {
   ADD : {src: '/file.txt', dest: '/file.txt'},
   COPY : {src: '/file.txt', dest: '/file.txt'},
   ENV : {key: 'val', key2: 'val 2'},
+  ARG : {key: 'val', key2: 'val 2'},
   EXPOSE : [8000, '8001', {number: 433, protocol: 'tcp'}, {from: 8080, to:8086}],
   LABEL : { key: 'val', nested: {key: 'val', doubley: { key: 'val'}}},
   USER : 'user1',
