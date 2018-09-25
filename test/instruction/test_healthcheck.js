@@ -51,9 +51,6 @@ describe('testing instruction "HEALTHCHECK"', ()=> {
     it('should throw on \'\'', () => {
       assert.throws( () => ins.cmd('') )
     })
-    it('should throw on "strings"', () => {
-      assert.throws( () => ins.cmd('strings') )
-    })
     it('should throw on undefined', () => {
       assert.throws( () => ins.cmd() )
     })
